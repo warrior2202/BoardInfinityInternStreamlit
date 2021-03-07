@@ -3,7 +3,8 @@ import pandas as pd
 import numpy as np
 import pickle
 from sklearn.ensemble import RandomForestClassifier
-
+import os
+port = int(os.environ.get(“PORT”, 5000))
 st.write("""
 # Penguin Prediction App
 
