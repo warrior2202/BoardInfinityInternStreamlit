@@ -2,6 +2,7 @@ import streamlit as st
 import tensorflow as tf
 import pandas as pd
 import numpy as np
+from numpy import array
 import os
 import PIL
 from PIL import Image, ImageOps
@@ -39,8 +40,7 @@ def main():
        im2 = ImageOps.grayscale(img)
        im3 = im2.resize((96,96), Image.ANTIALIAS)
        im3.save('somepic.jpg')
-       gray_img = cv2.imread('somepic.jpg', cv2.IMREAD_GRAYSCALE)
-      
+       gray_img = array(im3)
        dummy = gray_img
        dummy = np.stack(dummy, axis = 0)
        dummy = dummy.reshape(1, 96, 96, 1)
