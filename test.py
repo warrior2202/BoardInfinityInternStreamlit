@@ -8,7 +8,7 @@ from PIL import Image, ImageOps
 import seaborn as sns
 import pickle
 from PIL import *
-import cv2
+
 with open('detection.json', 'r') as json_file:
     json_savedModel= json_file.read()
 
@@ -63,7 +63,7 @@ if st.button("Predict"):
        im2 = ImageOps.grayscale(img)
        im3 = im2.resize((96,96), Image.ANTIALIAS)
        im3.save('somepic.jpg')
-       gray_img = cv2.imread('somepic.jpg', cv2.IMREAD_GRAYSCALE)
+      
        dummy = gray_img
        dummy = np.stack(dummy, axis = 0)
        dummy = dummy.reshape(1, 96, 96, 1)
