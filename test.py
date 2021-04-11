@@ -28,7 +28,7 @@ model_2_emotion = tf.keras.models.model_from_json(json_savedModel2)
 model_2_emotion.load_weights('weights_emotions.hdf5')
 model_2_emotion.compile(optimizer = "Adam", loss = "categorical_crossentropy", metrics = ["accuracy"])
 def main():
-    st.set_option('deprecation.showfileUploaderEncoding', False)
+    
 
     st.title("Emotion Ai")
     st.write("")
