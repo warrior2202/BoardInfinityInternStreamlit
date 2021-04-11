@@ -3,6 +3,6 @@ pandas
 numpy==1.18.1
 scikit-learn==0.22.1
 tensorflow
-libglib2.0-0
+
 opencv-python
 seaborn
