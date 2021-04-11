@@ -8,7 +8,10 @@ from PIL import Image, ImageOps
 import seaborn as sns
 import pickle
 from PIL import *
-
+import gdown
+url = 'https://drive.google.com/u/2/uc?id=1O0q60wdUVcFKoY4n8EFSlUBWuQwMwYDI&export=download'
+output = 'weights_keypoint.hdf5'
+gdown.download(url, output, quiet=False) 
 with open('detection.json', 'r') as json_file:
     json_savedModel= json_file.read()
 
