@@ -8,6 +8,7 @@ from PIL import Image, ImageOps
 import seaborn as sns
 import pickle
 from PIL import *
+import cv2
 import gdown
 url = 'https://drive.google.com/u/2/uc?id=1O0q60wdUVcFKoY4n8EFSlUBWuQwMwYDI&export=download'
 output = 'weights_keypoint.hdf5'
@@ -29,16 +30,29 @@ model_2_emotion.load_weights('weights_emotions.hdf5')
 model_2_emotion.compile(optimizer = "Adam", loss = "categorical_crossentropy", metrics = ["accuracy"])
 def main():
     
-
+    
     st.title("Emotion Ai")
     st.write("")
+    file_up = st.file_uploader("Upload an image", type="jpg")
+    if st.button("Predict"):
+       img = Image.open(file_up)
+       im2 = ImageOps.grayscale(img)
+       im3 = im2.resize((96,96), Image.ANTIALIAS)
+       im3.save('somepic.jpg')
+       gray_img = cv2.imread('somepic.jpg', cv2.IMREAD_GRAYSCALE)
+      
+       dummy = gray_img
+       dummy = np.stack(dummy, axis = 0)
+       dummy = dummy.reshape(1, 96, 96, 1)
+       dummy = dummy/255
+       df_predict_test = predict(dummy)
+       st.text(df_predict_test['emotion'])
 
     
 
 
 
 
-file_up = st.file_uploader("Upload an image", type="jpg")
 
 
 
@@ -61,18 +75,7 @@ def predict(X_test):
 
   return df_predict
 
-if st.button("Predict"):
-       img = Image.open(file_up)
-       im2 = ImageOps.grayscale(img)
-       im3 = im2.resize((96,96), Image.ANTIALIAS)
-       im3.save('somepic.jpg')
-      
-       dummy = gray_img
-       dummy = np.stack(dummy, axis = 0)
-       dummy = dummy.reshape(1, 96, 96, 1)
-       dummy = dummy/255
-       df_predict_test = predict(dummy)
-       st.text(df_predict_test['emotion'])
+
 
 
 
