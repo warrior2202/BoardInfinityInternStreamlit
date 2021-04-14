@@ -37,11 +37,34 @@ except:
     model_2_emotion = tf.keras.models.model_from_json(json_savedModel2)
     model_2_emotion.load_weights('weights_emotions.hdf5')
     model_2_emotion.compile(optimizer = "Adam", loss = "categorical_crossentropy", metrics = ["accuracy"])
+
+
+
+main_bg = "images.jpg"
+main_bg_ext = "jpg"
+
+side_bg = "images.jpg"
+side_bg_ext = "jpg"
 def main():
+
     
-    
-    st.title("Emotion Ai")
+    st.markdown("<h1 style='text-align: center; color: white;'>Emotion AI</h1>", unsafe_allow_html=True)
     st.write("")
+    st.markdown(
+        f"""
+        <style>
+        .reportview-container {{
+            background: url(data:image/{main_bg_ext};base64,{base64.b64encode(open(main_bg, "rb").read()).decode()})
+        }}
+    .sidebar .sidebar-content {{
+            background: url(data:image/{side_bg_ext};base64,{base64.b64encode(open(side_bg, "rb").read()).decode()})
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+    
+
     file_up = st.file_uploader("Upload an image", type="jpg")
     if st.button("Predict"):
        img = Image.open(file_up)
