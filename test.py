@@ -10,6 +10,7 @@ import seaborn as sns
 import pickle
 from PIL import *
 import gdown
+import base64
 
 with open('detection.json', 'r') as json_file:
     json_savedModel= json_file.read()
