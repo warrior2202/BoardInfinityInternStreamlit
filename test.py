@@ -10,9 +10,7 @@ import seaborn as sns
 import pickle
 from PIL import *
 import gdown
-url = 'https://drive.google.com/u/2/uc?id=1O0q60wdUVcFKoY4n8EFSlUBWuQwMwYDI&export=download'
-output = 'weights_keypoint.hdf5'
-gdown.download(url, output, quiet=False) 
+
 with open('detection.json', 'r') as json_file:
     json_savedModel= json_file.read()
 
@@ -20,14 +18,25 @@ with open('emotion.json', 'r') as json_file:
     json_savedModel2= json_file.read()
     
     
-# load the model architecture 
-model_1_facialKeyPoints = tf.keras.models.model_from_json(json_savedModel)
-model_1_facialKeyPoints.load_weights('weights_keypoint.hdf5')
-adam = tf.keras.optimizers.Adam(learning_rate=0.0001, beta_1=0.9, beta_2=0.999, amsgrad=False)
-model_1_facialKeyPoints.compile(loss="mean_squared_error", optimizer= adam , metrics = ['accuracy'])
-model_2_emotion = tf.keras.models.model_from_json(json_savedModel2)
-model_2_emotion.load_weights('weights_emotions.hdf5')
-model_2_emotion.compile(optimizer = "Adam", loss = "categorical_crossentropy", metrics = ["accuracy"])
+try:
+    model_1_facialKeyPoints = tf.keras.models.model_from_json(json_savedModel)
+    model_1_facialKeyPoints.load_weights('weights_keypoint.hdf5')
+    adam = tf.keras.optimizers.Adam(learning_rate=0.0001, beta_1=0.9, beta_2=0.999, amsgrad=False)
+    model_1_facialKeyPoints.compile(loss="mean_squared_error", optimizer= adam , metrics = ['accuracy'])
+    model_2_emotion = tf.keras.models.model_from_json(json_savedModel2)
+    model_2_emotion.load_weights('weights_emotions.hdf5')
+    model_2_emotion.compile(optimizer = "Adam", loss = "categorical_crossentropy", metrics = ["accuracy"])
+except:
+    url = 'https://drive.google.com/u/2/uc?id=1O0q60wdUVcFKoY4n8EFSlUBWuQwMwYDI&export=download'
+    output = 'weights_keypoint.hdf5'
+    gdown.download(url, output, quiet=False) 
+    model_1_facialKeyPoints = tf.keras.models.model_from_json(json_savedModel)
+    model_1_facialKeyPoints.load_weights('weights_keypoint.hdf5')
+    adam = tf.keras.optimizers.Adam(learning_rate=0.0001, beta_1=0.9, beta_2=0.999, amsgrad=False)
+    model_1_facialKeyPoints.compile(loss="mean_squared_error", optimizer= adam , metrics = ['accuracy'])
+    model_2_emotion = tf.keras.models.model_from_json(json_savedModel2)
+    model_2_emotion.load_weights('weights_emotions.hdf5')
+    model_2_emotion.compile(optimizer = "Adam", loss = "categorical_crossentropy", metrics = ["accuracy"])
 def main():
     
     
@@ -38,7 +47,7 @@ def main():
        img = Image.open(file_up)
        im2 = ImageOps.grayscale(img)
        im3 = im2.resize((96,96), Image.ANTIALIAS)
-       
+       im3.save('somepic.jpg')
        gray_img = array(im3)
        dummy = gray_img
        dummy = np.stack(dummy, axis = 0)
