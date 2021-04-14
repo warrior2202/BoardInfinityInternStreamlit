@@ -45,7 +45,19 @@ def main():
        dummy = dummy.reshape(1, 96, 96, 1)
        dummy = dummy/255
        df_predict_test = predict(dummy)
-       st.text(df_predict_test['emotion'])
+       if df_predict_test['emotion'].values.item() == 0:
+         st.text("Angry")
+       elif df_predict_test['emotion'].values.item() == 1:
+         st.text("Disgust")
+       elif df_predict_test['emotion'].values.item() == 2:
+         st.text("Sad")
+       elif df_predict_test['emotion'].values.item() == 3:
+         st.text("Happy")
+       elif df_predict_test['emotion'].values.item() ==4:
+         st.text("Surprise")
+         
+
+
 
     
 
