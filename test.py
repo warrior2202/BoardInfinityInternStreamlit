@@ -41,29 +41,29 @@ except:
 
 
 
-main_bg = "images.jpg"
-main_bg_ext = "jpg"
+# main_bg = "images.jpg"
+# main_bg_ext = "jpg"
 
-side_bg = "images.jpg"
-side_bg_ext = "jpg"
+# side_bg = "images.jpg"
+# side_bg_ext = "jpg"
 def main():
 
     
     st.markdown("<h1 style='text-align: center; color: white;'>Emotion AI</h1>", unsafe_allow_html=True)
     st.write("")
-    st.markdown(
-        f"""
-        <style>
-        .reportview-container {{
-            background: url(data:image/{main_bg_ext};base64,{base64.b64encode(open(main_bg, "rb").read()).decode()})
-        }}
-    .sidebar .sidebar-content {{
-            background: url(data:image/{side_bg_ext};base64,{base64.b64encode(open(side_bg, "rb").read()).decode()})
-        }}
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
+#     st.markdown(
+#         f"""
+#         <style>
+#         .reportview-container {{
+#             background: url(data:image/{main_bg_ext};base64,{base64.b64encode(open(main_bg, "rb").read()).decode()})
+#         }}
+#     .sidebar .sidebar-content {{
+#             background: url(data:image/{side_bg_ext};base64,{base64.b64encode(open(side_bg, "rb").read()).decode()})
+#         }}
+#         </style>
+#         """,
+#         unsafe_allow_html=True
+#     )
     
 
     file_up = st.file_uploader("Upload an image", type="jpg")
