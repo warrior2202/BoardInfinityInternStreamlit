@@ -49,7 +49,7 @@ except:
 def main():
 
     
-    st.markdown("<h1 style='text-align: center; color: white;'>Emotion AI</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center; color: Black;'>Emotion AI</h1>", unsafe_allow_html=True)
     st.write("")
 #     st.markdown(
 #         f"""
