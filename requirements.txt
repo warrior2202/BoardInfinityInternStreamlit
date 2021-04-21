@@ -1,6 +1,6 @@
 streamlit==0.61.0
 pandas
-numpy==1.18.1
+numpy
 scikit-learn==0.22.1
 tensorflow
 gdown
