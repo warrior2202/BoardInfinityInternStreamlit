@@ -71,7 +71,6 @@ def main():
        img = Image.open(file_up)
        im2 = ImageOps.grayscale(img)
        im3 = im2.resize((96,96), Image.ANTIALIAS)
-       im3.save('somepic.jpg')
        gray_img = array(im3)
        dummy = gray_img
        dummy = np.stack(dummy, axis = 0)
